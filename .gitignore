@@ -24,6 +24,7 @@
 .DS_Store
 *.pem
 /docs/
+./README.md
 
 # debug
 npm-debug.log*
