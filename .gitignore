@@ -12,6 +12,10 @@
 
 # testing
 /coverage
+/playwright-report
+/test-results
+/reports/lighthouse
+.lighthouseci/
 
 # next.js
 /.next/
@@ -25,7 +29,6 @@
 .DS_Store
 *.pem
 /docs/
-README.md
 
 # debug
 npm-debug.log*
@@ -42,3 +45,4 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.env*.local
