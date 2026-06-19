@@ -5,8 +5,14 @@ import { cn } from "@/lib/cn";
 
 const footerLinks = [
   { href: "/products", label: "Shop" },
-  { href: "#", label: "About" },
-  { href: "#", label: "Contact" },
+  {
+    href: "https://github.com/johnTubson/kora-market",
+    label: "GitHub",
+  },
+  {
+    href: "mailto:johntubson@gmail.com",
+    label: "Contact",
+  },
 ];
 
 export type FooterProps = {
@@ -35,6 +41,9 @@ export function Footer({ className }: FooterProps) {
                   <Link
                     href={link.href}
                     className="focus-ring inline-flex min-h-touch items-center text-sm text-foreground hover:text-primary"
+                    {...(link.href.startsWith("http")
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
                   >
                     {link.label}
                   </Link>
