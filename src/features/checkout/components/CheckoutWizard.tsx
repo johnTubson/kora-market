@@ -29,6 +29,7 @@ import {
   ADDRESS_FIELDS,
   checkoutSchema,
   PAYMENT_FIELDS,
+  type CheckoutFormInput,
   type CheckoutFormValues,
 } from "@/lib/validators";
 
@@ -95,8 +96,10 @@ export function CheckoutWizard() {
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
 
-  const methods = useForm<CheckoutFormValues>({
-    resolver: zodResolver(checkoutSchema),
+  const methods = useForm<CheckoutFormInput>({
+    resolver: zodResolver(
+      checkoutSchema.pick({ address: true, payment: true })
+    ),
     defaultValues: {
       address: {
         fullName: "",
@@ -114,14 +117,6 @@ export function CheckoutWizard() {
         expiry: "",
         cvv: "",
       },
-      items: items.map((item) => ({
-        id: item.id,
-        name: item.name,
-        variantName: item.variantName,
-        quantity: item.quantity,
-        priceNGN: item.priceNGN,
-      })),
-      currency,
     },
     mode: "onBlur",
   });
@@ -135,26 +130,12 @@ export function CheckoutWizard() {
     }
   }, [hydrated, items.length, router]);
 
-  useEffect(() => {
-    methods.setValue(
-      "items",
-      items.map((item) => ({
-        id: item.id,
-        name: item.name,
-        variantName: item.variantName,
-        quantity: item.quantity,
-        priceNGN: item.priceNGN,
-      }))
-    );
-    methods.setValue("currency", currency);
-  }, [items, currency, methods]);
-
   async function handleNext() {
     setSubmitError(null);
 
     if (step === 1) {
       const addressFields = ADDRESS_FIELDS.map(
-        (field) => `address.${field}` as FieldPath<CheckoutFormValues>
+        (field) => `address.${field}` as FieldPath<CheckoutFormInput>
       );
       const valid = await trigger(addressFields);
       if (valid) setStep(2);
@@ -162,10 +143,10 @@ export function CheckoutWizard() {
     }
 
     if (step === 2) {
-      const paymentFields: FieldPath<CheckoutFormValues>[] =
+      const paymentFields: FieldPath<CheckoutFormInput>[] =
         paymentMethod === "card"
           ? PAYMENT_FIELDS.map(
-              (field) => `payment.${field}` as FieldPath<CheckoutFormValues>
+              (field) => `payment.${field}` as FieldPath<CheckoutFormInput>
             )
           : ["payment.method"];
       const valid = await trigger(paymentFields);
@@ -178,10 +159,22 @@ export function CheckoutWizard() {
     setStep((current) => Math.max(1, current - 1));
   }
 
-  function onSubmit(data: CheckoutFormValues) {
+  function onSubmit(formData: CheckoutFormInput) {
     setSubmitError(null);
+    const payload: CheckoutFormValues = {
+      ...formData,
+      currency,
+      items: items.map((item) => ({
+        id: item.id,
+        name: item.name,
+        variantName: item.variantName,
+        quantity: item.quantity,
+        priceNGN: item.priceNGN,
+      })),
+    };
+
     startTransition(async () => {
-      const result = await createOrder(data);
+      const result = await createOrder(payload);
       if (result?.error) {
         setSubmitError(result.error);
       }

@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect } from "react";
 
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
@@ -11,14 +10,7 @@ type ProductDetailErrorProps = {
   reset: () => void;
 };
 
-export default function ProductDetailError({
-  error,
-  reset,
-}: ProductDetailErrorProps) {
-  useEffect(() => {
-    console.error(error);
-  }, [error]);
-
+export default function ProductDetailError({ reset }: ProductDetailErrorProps) {
   return (
     <Container className="flex min-h-[50vh] flex-col items-center justify-center py-16 text-center">
       <h1 className="text-2xl font-bold">Couldn&apos;t load product</h1>

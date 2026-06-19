@@ -12,12 +12,19 @@ export type NavLink = {
 
 export type MobileNavProps = {
   links: NavLink[];
+  pathname: string;
   className?: string;
 };
 
-export function MobileNav({ links, className }: MobileNavProps) {
+function isNavActive(pathname: string, href: string) {
+  if (href === "/") {
+    return pathname === "/";
+  }
+  return pathname.startsWith(href);
+}
+
+export function MobileNav({ links, pathname, className }: MobileNavProps) {
   const [open, setOpen] = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
@@ -32,12 +39,6 @@ export function MobileNav({ links, className }: MobileNavProps) {
 
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [open]);
-
-  useEffect(() => {
-    if (open) {
-      menuRef.current?.querySelector<HTMLElement>("a")?.focus();
-    }
   }, [open]);
 
   return (
@@ -64,7 +65,7 @@ export function MobileNav({ links, className }: MobileNavProps) {
           />
           <nav
             id="mobile-nav-menu"
-            ref={menuRef}
+            ref={(node) => node?.querySelector<HTMLElement>("a")?.focus()}
             aria-label="Mobile navigation"
             className="absolute right-0 top-full z-50 mt-2 w-48 rounded-lg border border-border bg-background p-2 shadow-md"
           >
@@ -73,6 +74,9 @@ export function MobileNav({ links, className }: MobileNavProps) {
                 <li key={link.href}>
                   <Link
                     href={link.href}
+                    aria-current={
+                      isNavActive(pathname, link.href) ? "page" : undefined
+                    }
                     className="focus-ring flex min-h-touch items-center rounded-md px-3 text-sm font-medium hover:bg-muted"
                     onClick={() => setOpen(false)}
                   >

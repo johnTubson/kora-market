@@ -3,21 +3,21 @@
 import { useFormContext } from "react-hook-form";
 
 import { PriceDisplay } from "@/features/catalog/components/PriceDisplay";
+import {
+  selectCartSubtotal,
+  useCartStore,
+} from "@/features/cart/store/cart-store";
 import { useCurrency } from "@/providers/currency-provider";
-import type { CheckoutFormValues } from "@/lib/validators";
+import type { CheckoutFormInput } from "@/lib/validators";
 
 export function ReviewStep() {
-  const { watch } = useFormContext<CheckoutFormValues>();
+  const { watch } = useFormContext<CheckoutFormInput>();
   const { formatPrice } = useCurrency();
+  const items = useCartStore((state) => state.items);
+  const subtotal = useCartStore(selectCartSubtotal);
 
   const address = watch("address");
   const payment = watch("payment");
-  const items = watch("items");
-
-  const subtotal = items.reduce(
-    (total, item) => total + item.priceNGN * item.quantity,
-    0
-  );
 
   const paymentLabel =
     payment.method === "card"

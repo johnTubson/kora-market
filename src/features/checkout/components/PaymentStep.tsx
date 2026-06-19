@@ -5,7 +5,7 @@ import { useFormContext } from "react-hook-form";
 import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
 import { cn } from "@/lib/cn";
-import type { CheckoutFormValues } from "@/lib/validators";
+import type { CheckoutFormInput } from "@/lib/validators";
 
 const paymentMethods = [
   { value: "card", label: "Debit / Credit card" },
@@ -18,7 +18,7 @@ export function PaymentStep() {
     register,
     watch,
     formState: { errors },
-  } = useFormContext<CheckoutFormValues>();
+  } = useFormContext<CheckoutFormInput>();
 
   const method = watch("payment.method");
   const paymentErrors = errors.payment;

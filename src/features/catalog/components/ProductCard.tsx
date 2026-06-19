@@ -15,7 +15,10 @@ export type ProductCardProps = {
 export function ProductCard({ product, priority = false }: ProductCardProps) {
   return (
     <Card className="overflow-hidden transition-shadow hover:shadow-md">
-      <Link href={`/products/${product.slug}`} className="group block">
+      <Link
+        href={`/products/${product.slug}`}
+        className="focus-ring group block rounded-lg"
+      >
         <div className="relative aspect-square overflow-hidden bg-muted">
           <Image
             src={product.images[0]}

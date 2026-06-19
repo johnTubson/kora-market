@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useSyncExternalStore } from "react";
+import { useState, useSyncExternalStore } from "react";
 
 import { Button } from "@/components/ui/Button";
+import { ConfirmDialog } from "@/components/ui/ConfirmDialog";
 import { PriceDisplay } from "@/features/catalog/components/PriceDisplay";
 import {
   selectCartSubtotal,
@@ -25,6 +26,7 @@ function getServerHydrated() {
 
 export function CartSummary() {
   const router = useRouter();
+  const [confirmOpen, setConfirmOpen] = useState(false);
   const hydrated = useSyncExternalStore(
     subscribeToCartHydration,
     getCartHydrated,
@@ -41,38 +43,54 @@ export function CartSummary() {
     router.push("/checkout");
   }
 
+  function handleClearConfirm() {
+    clear();
+    setConfirmOpen(false);
+  }
+
   return (
-    <aside className="rounded-lg border border-border bg-muted/30 p-6">
-      <h2 className="text-lg font-semibold">Order summary</h2>
-      <dl className="mt-4 space-y-2">
-        <div className="flex items-center justify-between text-sm">
-          <dt className="text-muted-foreground">Subtotal</dt>
-          <dd className="font-semibold text-primary">
-            <PriceDisplay amountNGN={subtotal} />
-          </dd>
+    <>
+      <aside className="rounded-lg border border-border bg-muted/30 p-6">
+        <h2 className="text-lg font-semibold">Order summary</h2>
+        <dl className="mt-4 space-y-2">
+          <div className="flex items-center justify-between text-sm">
+            <dt className="text-muted-foreground">Subtotal</dt>
+            <dd className="font-semibold text-primary">
+              <PriceDisplay amountNGN={subtotal} />
+            </dd>
+          </div>
+        </dl>
+        <p className="mt-2 text-xs text-muted-foreground">
+          Shipping and taxes calculated at checkout.
+        </p>
+        <div className="mt-6 flex flex-col gap-2">
+          <Button
+            className="w-full"
+            disabled={!hydrated || itemCount === 0}
+            onClick={handleCheckout}
+          >
+            Proceed to checkout
+          </Button>
+          <Button variant="ghost" onClick={() => setConfirmOpen(true)}>
+            Clear cart
+          </Button>
+          <Link
+            href="/products"
+            className="text-center text-sm text-primary hover:underline"
+          >
+            Continue shopping
+          </Link>
         </div>
-      </dl>
-      <p className="mt-2 text-xs text-muted-foreground">
-        Shipping and taxes calculated at checkout.
-      </p>
-      <div className="mt-6 flex flex-col gap-2">
-        <Button
-          className="w-full"
-          disabled={!hydrated || itemCount === 0}
-          onClick={handleCheckout}
-        >
-          Proceed to checkout
-        </Button>
-        <Button variant="ghost" size="sm" onClick={clear}>
-          Clear cart
-        </Button>
-        <Link
-          href="/products"
-          className="text-center text-sm text-primary hover:underline"
-        >
-          Continue shopping
-        </Link>
-      </div>
-    </aside>
+      </aside>
+
+      <ConfirmDialog
+        open={confirmOpen}
+        title="Clear cart?"
+        description="This will remove all items from your cart. This action cannot be undone."
+        confirmLabel="Clear cart"
+        onConfirm={handleClearConfirm}
+        onCancel={() => setConfirmOpen(false)}
+      />
+    </>
   );
 }
