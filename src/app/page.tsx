@@ -2,8 +2,6 @@ import { Suspense } from "react";
 import Link from "next/link";
 
 import { Container } from "@/components/layout/Container";
-import { Footer } from "@/components/layout/Footer";
-import { Header } from "@/components/layout/Header";
 import { Button } from "@/components/ui/Button";
 import { Skeleton } from "@/components/ui/Skeleton";
 import { CategoryChips } from "@/features/catalog/components/CategoryChips";
@@ -16,38 +14,38 @@ export default function Home() {
 
   return (
     <>
-      <Header />
-      <main className="flex-1">
-        <HeroBanner />
+      <HeroBanner />
 
-        <Container className="py-12">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <h2 className="text-2xl font-bold">Shop by category</h2>
-              <p className="mt-1 text-muted-foreground">
-                Browse electronics, fashion, home goods, and pantry staples.
-              </p>
-            </div>
+      <Container className="py-12">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <h2 className="text-2xl font-bold">Shop by category</h2>
+            <p className="mt-1 text-muted-foreground">
+              Browse electronics, fashion, home goods, and pantry staples.
+            </p>
           </div>
+        </div>
 
-          <Suspense fallback={<CategoryChipsSkeleton />}>
-            <CategoryChips className="mt-6" />
-          </Suspense>
-        </Container>
+        <Suspense fallback={<CategoryChipsSkeleton />}>
+          <CategoryChips className="mt-6" />
+        </Suspense>
+      </Container>
 
-        <Container className="pb-16">
-          <div className="flex items-center justify-between gap-4">
-            <h2 className="text-2xl font-bold">Featured products</h2>
-            <Link href="/products">
-              <Button variant="ghost">View all</Button>
-            </Link>
-          </div>
-          <div className="mt-6">
-            <ProductGrid products={featuredProducts} priorityFirst />
-          </div>
-        </Container>
-      </main>
-      <Footer />
+      <Container className="pb-16">
+        <div className="flex items-center justify-between gap-4">
+          <h2 className="text-2xl font-bold">Featured products</h2>
+          <Link href="/products">
+            <Button variant="ghost">View all</Button>
+          </Link>
+        </div>
+        <div className="mt-6">
+          <ProductGrid
+            products={featuredProducts}
+            priorityFirst
+            priorityCount={1}
+          />
+        </div>
+      </Container>
     </>
   );
 }

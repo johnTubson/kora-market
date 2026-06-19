@@ -2,13 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Badge } from "@/components/ui/Badge";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/Card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { getCategoryLabel } from "@/features/catalog/constants";
 import { PriceDisplay } from "@/features/catalog/components/PriceDisplay";
 import type { Product } from "@/types";
@@ -45,20 +39,15 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
             {product.name}
           </CardTitle>
         </CardHeader>
-        <CardContent className="pt-0">
+        <CardContent className="pt-0 pb-4">
           <p className="text-lg font-bold text-primary">
             <PriceDisplay amountNGN={product.priceNGN} />
           </p>
+          <span className="mt-2 inline-block text-sm font-medium text-primary group-hover:underline">
+            View details
+          </span>
         </CardContent>
       </Link>
-      <CardFooter className="pt-0">
-        <Link
-          href={`/products/${product.slug}`}
-          className="focus-ring text-sm font-medium text-primary hover:underline"
-        >
-          View details
-        </Link>
-      </CardFooter>
     </Card>
   );
 }

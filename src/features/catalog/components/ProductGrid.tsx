@@ -4,11 +4,13 @@ import type { Product } from "@/types";
 export type ProductGridProps = {
   products: Product[];
   priorityFirst?: boolean;
+  priorityCount?: number;
 };
 
 export function ProductGrid({
   products,
   priorityFirst = false,
+  priorityCount = 4,
 }: ProductGridProps) {
   return (
     <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 lg:gap-6">
@@ -16,7 +18,7 @@ export function ProductGrid({
         <li key={product.id}>
           <ProductCard
             product={product}
-            priority={priorityFirst && index < 4}
+            priority={priorityFirst && index < priorityCount}
           />
         </li>
       ))}

@@ -12,7 +12,7 @@
   --muted: #f5f5f4;
   --muted-foreground: #78716c;
   --border: #e7e5e4;
-  --ring: #059669;
+  --ring: #047857;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -35,9 +35,9 @@
   --color-border: var(--border);
   --color-ring: var(--ring);
 
-  --color-primary: #059669;
-  --color-primary-foreground: #ecfdf5;
-  --color-primary-hover: #047857;
+  --color-primary: #047857;
+  --color-primary-foreground: #ffffff;
+  --color-primary-hover: #065f46;
 
   --color-secondary: #fef3c7;
   --color-secondary-foreground: #78350f;
@@ -93,4 +93,15 @@ body {
 /* Shared focus ring for interactive elements */
 .focus-ring {
   @apply outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

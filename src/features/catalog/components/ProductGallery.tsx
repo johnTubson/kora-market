@@ -28,34 +28,32 @@ export function ProductGallery({ product }: ProductGalleryProps) {
       </div>
 
       {product.images.length > 1 ? (
-        <div
-          className="flex gap-2 overflow-x-auto"
-          role="list"
-          aria-label="Product images"
-        >
+        <ul className="flex gap-2 overflow-x-auto" aria-label="Product images">
           {product.images.map((image, index) => (
-            <button
-              key={image}
-              type="button"
-              role="listitem"
-              aria-label={`View image ${index + 1}`}
-              aria-current={activeIndex === index ? "true" : undefined}
-              onClick={() => setActiveIndex(index)}
-              className={cn(
-                "focus-ring relative h-16 w-16 shrink-0 overflow-hidden rounded-md border-2",
-                activeIndex === index ? "border-primary" : "border-transparent"
-              )}
-            >
-              <Image
-                src={image}
-                alt=""
-                fill
-                sizes="64px"
-                className="object-cover"
-              />
-            </button>
+            <li key={image}>
+              <button
+                type="button"
+                aria-label={`View image ${index + 1}`}
+                aria-current={activeIndex === index ? "true" : undefined}
+                onClick={() => setActiveIndex(index)}
+                className={cn(
+                  "focus-ring relative h-16 w-16 shrink-0 overflow-hidden rounded-md border-2",
+                  activeIndex === index
+                    ? "border-primary"
+                    : "border-transparent"
+                )}
+              >
+                <Image
+                  src={image}
+                  alt=""
+                  fill
+                  sizes="64px"
+                  className="object-cover"
+                />
+              </button>
+            </li>
           ))}
-        </div>
+        </ul>
       ) : null}
     </div>
   );

@@ -7,13 +7,21 @@
     "category": "electronics",
     "priceNGN": 45000,
     "images": [
-      "https://picsum.photos/seed/wireless-earbuds-pro-1/800/800",
-      "https://picsum.photos/seed/wireless-earbuds-pro-2/800/800"
+      "/images/products/wireless-earbuds-pro.webp",
+      "/images/products/wireless-earbuds-pro-2.webp"
     ],
     "featured": true,
     "variants": [
-      { "id": "black", "name": "Black", "inStock": true },
-      { "id": "white", "name": "White", "inStock": true }
+      {
+        "id": "black",
+        "name": "Black",
+        "inStock": true
+      },
+      {
+        "id": "white",
+        "name": "White",
+        "inStock": true
+      }
     ],
     "inStock": true
   },
@@ -25,11 +33,17 @@
     "category": "electronics",
     "priceNGN": 28500,
     "images": [
-      "https://picsum.photos/seed/solar-power-bank-1/800/800",
-      "https://picsum.photos/seed/solar-power-bank-2/800/800"
+      "/images/products/solar-power-bank.webp",
+      "/images/products/solar-power-bank-2.webp"
     ],
     "featured": false,
-    "variants": [{ "id": "standard", "name": "Standard", "inStock": true }],
+    "variants": [
+      {
+        "id": "standard",
+        "name": "Standard",
+        "inStock": true
+      }
+    ],
     "inStock": true
   },
   {
@@ -39,11 +53,21 @@
     "description": "Affordable fitness tracker with heart-rate monitoring, step counter, and 7-day battery life.",
     "category": "electronics",
     "priceNGN": 52000,
-    "images": ["https://picsum.photos/seed/smart-watch-lite-1/800/800"],
+    "images": [
+      "/images/products/smart-watch-lite.webp"
+    ],
     "featured": false,
     "variants": [
-      { "id": "black", "name": "Black", "inStock": true },
-      { "id": "rose", "name": "Rose Gold", "inStock": false }
+      {
+        "id": "black",
+        "name": "Black",
+        "inStock": true
+      },
+      {
+        "id": "rose",
+        "name": "Rose Gold",
+        "inStock": false
+      }
     ],
     "inStock": true
   },
@@ -54,11 +78,21 @@
     "description": "Palm-sized speaker with rich bass and 12-hour playback. IPX5 splash resistant.",
     "category": "electronics",
     "priceNGN": 18500,
-    "images": ["https://picsum.photos/seed/bluetooth-speaker-mini-1/800/800"],
+    "images": [
+      "/images/products/bluetooth-speaker-mini.webp"
+    ],
     "featured": false,
     "variants": [
-      { "id": "blue", "name": "Ocean Blue", "inStock": true },
-      { "id": "red", "name": "Sunset Red", "inStock": true }
+      {
+        "id": "blue",
+        "name": "Ocean Blue",
+        "inStock": true
+      },
+      {
+        "id": "red",
+        "name": "Sunset Red",
+        "inStock": true
+      }
     ],
     "inStock": true
   },
@@ -69,9 +103,17 @@
     "description": "Expand your laptop with HDMI, SD card, and three USB-A ports. Ideal for remote work setups.",
     "category": "electronics",
     "priceNGN": 32000,
-    "images": ["https://picsum.photos/seed/usb-c-hub-7in1-1/800/800"],
+    "images": [
+      "/images/products/usb-c-hub-7in1.webp"
+    ],
     "featured": true,
-    "variants": [{ "id": "silver", "name": "Silver", "inStock": true }],
+    "variants": [
+      {
+        "id": "silver",
+        "name": "Silver",
+        "inStock": true
+      }
+    ],
     "inStock": true
   },
   {
@@ -82,14 +124,26 @@
     "category": "fashion",
     "priceNGN": 24500,
     "images": [
-      "https://picsum.photos/seed/ankara-print-dress-1/800/800",
-      "https://picsum.photos/seed/ankara-print-dress-2/800/800"
+      "/images/products/ankara-print-dress.webp",
+      "/images/products/ankara-print-dress-2.webp"
     ],
     "featured": true,
     "variants": [
-      { "id": "s", "name": "Size S", "inStock": true },
-      { "id": "m", "name": "Size M", "inStock": true },
-      { "id": "l", "name": "Size L", "inStock": true }
+      {
+        "id": "s",
+        "name": "Size S",
+        "inStock": true
+      },
+      {
+        "id": "m",
+        "name": "Size M",
+        "inStock": true
+      },
+      {
+        "id": "l",
+        "name": "Size L",
+        "inStock": true
+      }
     ],
     "inStock": true
   },
@@ -100,11 +154,21 @@
     "description": "Authentic handwoven kente scarf with traditional geometric patterns. A versatile statement piece.",
     "category": "fashion",
     "priceNGN": 12000,
-    "images": ["https://picsum.photos/seed/kente-scarf-1/800/800"],
+    "images": [
+      "/images/products/kente-scarf.webp"
+    ],
     "featured": false,
     "variants": [
-      { "id": "gold", "name": "Gold & Green", "inStock": true },
-      { "id": "blue", "name": "Blue & Red", "inStock": true }
+      {
+        "id": "gold",
+        "name": "Gold & Green",
+        "inStock": true
+      },
+      {
+        "id": "blue",
+        "name": "Blue & Red",
+        "inStock": true
+      }
     ],
     "inStock": true
   },
@@ -115,12 +179,26 @@
     "description": "Locally tanned leather sandals with cushioned sole. Durable comfort for long market days.",
     "category": "fashion",
     "priceNGN": 15800,
-    "images": ["https://picsum.photos/seed/leather-sandals-1/800/800"],
+    "images": [
+      "/images/products/leather-sandals.webp"
+    ],
     "featured": false,
     "variants": [
-      { "id": "38", "name": "EU 38", "inStock": true },
-      { "id": "40", "name": "EU 40", "inStock": true },
-      { "id": "42", "name": "EU 42", "inStock": false }
+      {
+        "id": "38",
+        "name": "EU 38",
+        "inStock": true
+      },
+      {
+        "id": "40",
+        "name": "EU 40",
+        "inStock": true
+      },
+      {
+        "id": "42",
+        "name": "EU 42",
+        "inStock": false
+      }
     ],
     "inStock": true
   },
@@ -131,12 +209,26 @@
     "description": "Relaxed-fit shirt in bold wax print fabric. Breathable and easy to style for casual outings.",
     "category": "fashion",
     "priceNGN": 16500,
-    "images": ["https://picsum.photos/seed/wax-print-shirt-1/800/800"],
+    "images": [
+      "/images/products/wax-print-shirt.webp"
+    ],
     "featured": false,
     "variants": [
-      { "id": "m", "name": "Size M", "inStock": true },
-      { "id": "l", "name": "Size L", "inStock": true },
-      { "id": "xl", "name": "Size XL", "inStock": true }
+      {
+        "id": "m",
+        "name": "Size M",
+        "inStock": true
+      },
+      {
+        "id": "l",
+        "name": "Size L",
+        "inStock": true
+      },
+      {
+        "id": "xl",
+        "name": "Size XL",
+        "inStock": true
+      }
     ],
     "inStock": true
   },
@@ -147,11 +239,21 @@
     "description": "Hand-beaded necklace and earring set inspired by West African craftsmanship.",
     "category": "fashion",
     "priceNGN": 8900,
-    "images": ["https://picsum.photos/seed/beaded-necklace-set-1/800/800"],
+    "images": [
+      "/images/products/beaded-necklace-set.webp"
+    ],
     "featured": false,
     "variants": [
-      { "id": "earth", "name": "Earth Tones", "inStock": true },
-      { "id": "ocean", "name": "Ocean Blues", "inStock": true }
+      {
+        "id": "earth",
+        "name": "Earth Tones",
+        "inStock": true
+      },
+      {
+        "id": "ocean",
+        "name": "Ocean Blues",
+        "inStock": true
+      }
     ],
     "inStock": true
   },
@@ -162,11 +264,21 @@
     "description": "Large handwoven basket for laundry, toys, or market hauls. Natural sisal with leather handles.",
     "category": "home",
     "priceNGN": 14200,
-    "images": ["https://picsum.photos/seed/woven-storage-basket-1/800/800"],
+    "images": [
+      "/images/products/woven-storage-basket.webp"
+    ],
     "featured": true,
     "variants": [
-      { "id": "natural", "name": "Natural", "inStock": true },
-      { "id": "charcoal", "name": "Charcoal", "inStock": true }
+      {
+        "id": "natural",
+        "name": "Natural",
+        "inStock": true
+      },
+      {
+        "id": "charcoal",
+        "name": "Charcoal",
+        "inStock": true
+      }
     ],
     "inStock": true
   },
@@ -177,9 +289,17 @@
     "description": "Set of three glazed ceramic planters with drainage trays. Bring greenery to any room.",
     "category": "home",
     "priceNGN": 19800,
-    "images": ["https://picsum.photos/seed/ceramic-planter-set-1/800/800"],
+    "images": [
+      "/images/products/ceramic-planter-set.webp"
+    ],
     "featured": false,
-    "variants": [{ "id": "terracotta", "name": "Terracotta", "inStock": true }],
+    "variants": [
+      {
+        "id": "terracotta",
+        "name": "Terracotta",
+        "inStock": true
+      }
+    ],
     "inStock": true
   },
   {
@@ -189,11 +309,21 @@
     "description": "Single-piece mango wood serving bowl, polished with food-safe oil. Each piece is unique.",
     "category": "home",
     "priceNGN": 11500,
-    "images": ["https://picsum.photos/seed/hand-carved-wooden-bowl-1/800/800"],
+    "images": [
+      "/images/products/hand-carved-wooden-bowl.webp"
+    ],
     "featured": false,
     "variants": [
-      { "id": "medium", "name": "Medium (25cm)", "inStock": true },
-      { "id": "large", "name": "Large (35cm)", "inStock": true }
+      {
+        "id": "medium",
+        "name": "Medium (25cm)",
+        "inStock": true
+      },
+      {
+        "id": "large",
+        "name": "Large (35cm)",
+        "inStock": true
+      }
     ],
     "inStock": true
   },
@@ -204,10 +334,16 @@
     "description": "Decorative pillow cover in authentic Bogolan mudcloth print. Insert not included.",
     "category": "home",
     "priceNGN": 9800,
-    "images": ["https://picsum.photos/seed/mudcloth-throw-pillow-1/800/800"],
+    "images": [
+      "/images/products/mudcloth-throw-pillow.webp"
+    ],
     "featured": false,
     "variants": [
-      { "id": "black-white", "name": "Black & White", "inStock": true }
+      {
+        "id": "black-white",
+        "name": "Black & White",
+        "inStock": true
+      }
     ],
     "inStock": true
   },
@@ -218,9 +354,17 @@
     "description": "Eco-friendly bamboo board with juice groove and non-slip feet. Gentle on knife edges.",
     "category": "home",
     "priceNGN": 13500,
-    "images": ["https://picsum.photos/seed/bamboo-cutting-board-1/800/800"],
+    "images": [
+      "/images/products/bamboo-cutting-board.webp"
+    ],
     "featured": false,
-    "variants": [{ "id": "standard", "name": "Standard", "inStock": true }],
+    "variants": [
+      {
+        "id": "standard",
+        "name": "Standard",
+        "inStock": true
+      }
+    ],
     "inStock": true
   },
   {
@@ -230,11 +374,21 @@
     "description": "Unrefined shea butter sourced from Northern Ghana. Rich moisturizer for skin and hair.",
     "category": "food",
     "priceNGN": 7500,
-    "images": ["https://picsum.photos/seed/shea-butter-organic-1/800/800"],
+    "images": [
+      "/images/products/shea-butter-organic.webp"
+    ],
     "featured": true,
     "variants": [
-      { "id": "500g", "name": "500g Jar", "inStock": true },
-      { "id": "1kg", "name": "1kg Jar", "inStock": true }
+      {
+        "id": "500g",
+        "name": "500g Jar",
+        "inStock": true
+      },
+      {
+        "id": "1kg",
+        "name": "1kg Jar",
+        "inStock": true
+      }
     ],
     "inStock": true
   },
@@ -245,11 +399,21 @@
     "description": "Authentic Nigerian suya spice mix with ground peanuts, ginger, and chili. 200g pouch.",
     "category": "food",
     "priceNGN": 3200,
-    "images": ["https://picsum.photos/seed/suya-spice-blend-1/800/800"],
+    "images": [
+      "/images/products/suya-spice-blend.webp"
+    ],
     "featured": false,
     "variants": [
-      { "id": "mild", "name": "Mild", "inStock": true },
-      { "id": "hot", "name": "Hot", "inStock": true }
+      {
+        "id": "mild",
+        "name": "Mild",
+        "inStock": true
+      },
+      {
+        "id": "hot",
+        "name": "Hot",
+        "inStock": true
+      }
     ],
     "inStock": true
   },
@@ -260,11 +424,21 @@
     "description": "Crispy sweet plantain chips, lightly salted. No preservatives. 300g resealable bag.",
     "category": "food",
     "priceNGN": 2800,
-    "images": ["https://picsum.photos/seed/dried-plantain-chips-1/800/800"],
+    "images": [
+      "/images/products/dried-plantain-chips.webp"
+    ],
     "featured": false,
     "variants": [
-      { "id": "original", "name": "Original", "inStock": true },
-      { "id": "spicy", "name": "Spicy", "inStock": true }
+      {
+        "id": "original",
+        "name": "Original",
+        "inStock": true
+      },
+      {
+        "id": "spicy",
+        "name": "Spicy",
+        "inStock": true
+      }
     ],
     "inStock": true
   },
@@ -275,9 +449,17 @@
     "description": "Cold-pressed red palm oil for cooking and traditional dishes. 1-litre bottle.",
     "category": "food",
     "priceNGN": 4500,
-    "images": ["https://picsum.photos/seed/palm-oil-premium-1/800/800"],
+    "images": [
+      "/images/products/palm-oil-premium.webp"
+    ],
     "featured": false,
-    "variants": [{ "id": "1l", "name": "1 Litre", "inStock": true }],
+    "variants": [
+      {
+        "id": "1l",
+        "name": "1 Litre",
+        "inStock": true
+      }
+    ],
     "inStock": true
   },
   {
@@ -287,9 +469,17 @@
     "description": "Dried hibiscus flowers (zobo) for refreshing drinks. 250g pack makes 20+ servings.",
     "category": "food",
     "priceNGN": 3500,
-    "images": ["https://picsum.photos/seed/hibiscus-tea-pack-1/800/800"],
+    "images": [
+      "/images/products/hibiscus-tea-pack.webp"
+    ],
     "featured": false,
-    "variants": [{ "id": "250g", "name": "250g", "inStock": true }],
+    "variants": [
+      {
+        "id": "250g",
+        "name": "250g",
+        "inStock": true
+      }
+    ],
     "inStock": true
   }
 ]

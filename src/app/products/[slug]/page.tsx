@@ -1,8 +1,6 @@
 import { notFound } from "next/navigation";
 
 import { Container } from "@/components/layout/Container";
-import { Footer } from "@/components/layout/Footer";
-import { Header } from "@/components/layout/Header";
 import { ProductDetailClient } from "@/features/catalog/components/ProductDetailClient";
 import { getAllProductSlugs, getProductBySlug } from "@/lib/products";
 
@@ -39,14 +37,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
   }
 
   return (
-    <>
-      <Header />
-      <main className="flex-1">
-        <Container className="py-10">
-          <ProductDetailClient product={product} />
-        </Container>
-      </main>
-      <Footer />
-    </>
+    <Container className="py-10">
+      <ProductDetailClient product={product} />
+    </Container>
   );
 }

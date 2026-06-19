@@ -1,7 +1,9 @@
 "use client";
 
 import { MswProvider } from "@/providers/msw-provider";
+import { CartProvider } from "@/providers/cart-provider";
 import { CurrencyProvider } from "@/providers/currency-provider";
+import { ToastProvider } from "@/components/ui/Toast";
 import type { CurrencyCode } from "@/types";
 
 type AppProvidersProps = {
@@ -13,7 +15,9 @@ export function AppProviders({ children, initialCurrency }: AppProvidersProps) {
   return (
     <MswProvider>
       <CurrencyProvider initialCurrency={initialCurrency}>
-        {children}
+        <CartProvider>
+          <ToastProvider>{children}</ToastProvider>
+        </CartProvider>
       </CurrencyProvider>
     </MswProvider>
   );

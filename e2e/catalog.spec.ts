@@ -22,6 +22,7 @@ test.describe("Catalog", () => {
     ).toBeVisible();
 
     await page.getByLabel("Search products").fill("ankara");
+    await page.getByLabel("Search products").press("Enter");
     await expect(page.getByText("Ankara Print Dress")).toBeVisible();
     await expect(page.getByText("1 product")).toBeVisible();
 
@@ -41,6 +42,7 @@ test.describe("Catalog", () => {
   test("switch currency on product listing", async ({ page }) => {
     await page.goto("/products");
     await page.getByLabel("Search products").fill("ankara");
+    await page.getByLabel("Search products").press("Enter");
 
     await page.getByRole("button", { name: "$ USD" }).click();
     await expect(page.getByText("$16.33")).toBeVisible();

@@ -3,12 +3,13 @@ import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { CurrencySwitcher } from "@/components/layout/CurrencySwitcher";
 import { MobileNav } from "@/components/layout/MobileNav";
+import { CartBadge } from "@/features/cart/components/CartBadge";
 import { cn } from "@/lib/cn";
 
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/products", label: "Products" },
-  // { href: "/cart", label: "Cart" },
+  { href: "/cart", label: "Cart" },
 ];
 
 export type HeaderProps = {
@@ -20,7 +21,7 @@ export function Header({ className }: HeaderProps) {
     <header
       className={cn(
         "sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80",
-        className
+        className,
       )}
     >
       <Container className="flex h-16 items-center justify-between gap-4">
@@ -48,14 +49,7 @@ export function Header({ className }: HeaderProps) {
 
         <div className="flex items-center gap-2">
           <CurrencySwitcher />
-          <Link
-            href="/cart"
-            className="focus-ring relative hidden min-h-touch min-w-touch items-center justify-center rounded-md px-3 text-sm font-medium hover:bg-muted md:inline-flex"
-            aria-label="Shopping cart"
-          >
-            Cart
-            <span className="sr-only">0 items</span>
-          </Link>
+          <CartBadge className="hidden md:inline-flex" />
           <MobileNav links={navLinks} />
         </div>
       </Container>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="700" viewBox="0 0 900 700" role="img" aria-label="Market hero placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#047857"/>
+      <stop offset="100%" stop-color="#065f46"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="700" fill="url(#bg)"/>
+  <rect x="120" y="160" width="660" height="380" rx="24" fill="#ecfdf5" opacity="0.15"/>
+  <circle cx="300" cy="320" r="72" fill="#fde68a"/>
+  <circle cx="450" cy="280" r="56" fill="#fca5a5"/>
+  <circle cx="580" cy="340" r="64" fill="#93c5fd"/>
+</svg>

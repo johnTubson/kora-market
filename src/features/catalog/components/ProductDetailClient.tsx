@@ -2,12 +2,12 @@
 
 import { useState } from "react";
 
-import { Button } from "@/components/ui/Button";
+import { Badge } from "@/components/ui/Badge";
 import { PriceDisplay } from "@/features/catalog/components/PriceDisplay";
 import { ProductGallery } from "@/features/catalog/components/ProductGallery";
 import { VariantSelector } from "@/features/catalog/components/VariantSelector";
+import { AddToCartButton } from "@/features/cart/components/AddToCartButton";
 import { getCategoryLabel } from "@/features/catalog/constants";
-import { Badge } from "@/components/ui/Badge";
 import type { Product } from "@/types";
 
 export type ProductDetailClientProps = {
@@ -19,10 +19,16 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
     product.variants.find((variant) => variant.inStock)?.id ??
     product.variants[0]?.id ??
     "";
+  const defaultVariantName =
+    product.variants.find((variant) => variant.id === defaultVariant)?.name ??
+    "Default";
+
   const [selectedVariant, setSelectedVariant] = useState(defaultVariant);
-  const variantInStock = product.variants.find(
-    (variant) => variant.id === selectedVariant
-  )?.inStock;
+  const selectedVariantMeta = product.variants.find(
+    (variant) => variant.id === selectedVariant,
+  );
+  const variantInStock = selectedVariantMeta?.inStock;
+  const variantName = selectedVariantMeta?.name ?? defaultVariantName;
 
   return (
     <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
@@ -46,7 +52,7 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
           ) : null}
         </div>
 
-        <p className="text-muted-foreground leading-relaxed">
+        <p className="leading-relaxed text-muted-foreground">
           {product.description}
         </p>
 
@@ -58,16 +64,13 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
           />
         ) : null}
 
-        <Button
-          size="lg"
+        <AddToCartButton
+          product={product}
+          variantId={selectedVariant || "default"}
+          variantName={variantName}
           disabled={!product.inStock || variantInStock === false}
           className="w-full sm:w-auto"
-        >
-          Add to cart
-        </Button>
-        <p className="text-xs text-muted-foreground">
-          Cart functionality coming soon.
-        </p>
+        />
       </div>
     </div>
   );

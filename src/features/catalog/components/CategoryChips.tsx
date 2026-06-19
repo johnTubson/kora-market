@@ -28,9 +28,8 @@ export function CategoryChips({
   ];
 
   return (
-    <div
+    <ul
       className={cn("flex gap-2 overflow-x-auto pb-1", className)}
-      role="list"
       aria-label="Product categories"
     >
       {chips.map((chip) => {
@@ -46,22 +45,22 @@ export function CategoryChips({
         const isActive = activeCategory === chip.id;
 
         return (
-          <Link
-            key={chip.id}
-            href={href}
-            role="listitem"
-            aria-current={isActive ? "true" : undefined}
-            className={cn(
-              "focus-ring shrink-0 rounded-full border px-4 py-2 text-sm font-medium transition-colors",
-              isActive
-                ? "border-primary bg-primary text-primary-foreground"
-                : "border-border bg-background text-foreground hover:bg-muted"
-            )}
-          >
-            {chip.label}
-          </Link>
+          <li key={chip.id} className="shrink-0">
+            <Link
+              href={href}
+              aria-current={isActive ? "page" : undefined}
+              className={cn(
+                "focus-ring inline-flex min-h-touch items-center rounded-full border px-4 py-2 text-sm font-medium transition-colors",
+                isActive
+                  ? "border-primary bg-primary text-primary-foreground"
+                  : "border-border bg-background text-foreground hover:bg-muted"
+              )}
+            >
+              {chip.label}
+            </Link>
+          </li>
         );
       })}
-    </div>
+    </ul>
   );
 }
