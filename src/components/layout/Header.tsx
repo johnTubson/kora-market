@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import { Container } from "@/components/layout/Container";
 import { CurrencySwitcher } from "@/components/layout/CurrencySwitcher";
@@ -16,12 +19,21 @@ export type HeaderProps = {
   className?: string;
 };
 
+function isNavActive(pathname: string, href: string) {
+  if (href === "/") {
+    return pathname === "/";
+  }
+  return pathname.startsWith(href);
+}
+
 export function Header({ className }: HeaderProps) {
+  const pathname = usePathname();
+
   return (
     <header
       className={cn(
         "sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80",
-        className,
+        className
       )}
     >
       <Container className="flex h-16 items-center justify-between gap-4">
@@ -40,6 +52,9 @@ export function Header({ className }: HeaderProps) {
             <Link
               key={link.href}
               href={link.href}
+              aria-current={
+                isNavActive(pathname, link.href) ? "page" : undefined
+              }
               className="focus-ring min-h-touch inline-flex items-center rounded-md px-3 text-sm font-medium text-foreground hover:bg-muted"
             >
               {link.label}
@@ -49,8 +64,8 @@ export function Header({ className }: HeaderProps) {
 
         <div className="flex items-center gap-2">
           <CurrencySwitcher />
-          <CartBadge className="hidden md:inline-flex" />
-          <MobileNav links={navLinks} />
+          <CartBadge />
+          <MobileNav links={navLinks} pathname={pathname} />
         </div>
       </Container>
     </header>

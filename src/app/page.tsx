@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import Link from "next/link";
+import type { Metadata } from "next";
 
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
@@ -8,6 +9,18 @@ import { CategoryChips } from "@/features/catalog/components/CategoryChips";
 import { HeroBanner } from "@/features/catalog/components/HeroBanner";
 import { ProductGrid } from "@/features/catalog/components/ProductGrid";
 import { getFeaturedProducts } from "@/lib/products";
+import { siteConfig } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "Shop local. Ship fast.",
+  description:
+    "Discover featured products across electronics, fashion, home, and food — built for mobile-first shopping in emerging markets.",
+  openGraph: {
+    title: `${siteConfig.name} — Shop local. Ship fast.`,
+    description: siteConfig.description,
+    url: siteConfig.url,
+  },
+};
 
 export default function Home() {
   const featuredProducts = getFeaturedProducts(8);

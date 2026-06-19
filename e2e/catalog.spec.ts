@@ -22,9 +22,13 @@ test.describe("Catalog", () => {
     ).toBeVisible();
 
     await page.getByLabel("Search products").fill("ankara");
-    await page.getByLabel("Search products").press("Enter");
+    await page.getByRole("button", { name: "Search", exact: true }).click();
+    await expect(page).toHaveURL(/q=ankara/);
     await expect(page.getByText("Ankara Print Dress")).toBeVisible();
     await expect(page.getByText("1 product")).toBeVisible();
+    await expect(
+      page.getByRole("button", { name: 'Remove filter: Search: "ankara"' })
+    ).toBeVisible();
 
     await page
       .getByRole("link", { name: "Ankara Print Dress" })
@@ -42,9 +46,25 @@ test.describe("Catalog", () => {
   test("switch currency on product listing", async ({ page }) => {
     await page.goto("/products");
     await page.getByLabel("Search products").fill("ankara");
-    await page.getByLabel("Search products").press("Enter");
+    await page.getByRole("button", { name: "Search", exact: true }).click();
+    await expect(page).toHaveURL(/q=ankara/);
 
     await page.getByRole("button", { name: "$ USD" }).click();
     await expect(page.getByText("$16.33")).toBeVisible();
+  });
+
+  test("mobile viewport filters by category chip", async ({ page }) => {
+    await page.setViewportSize({ width: 375, height: 667 });
+    await page.goto("/products");
+
+    const fashionChip = page
+      .locator('[aria-label="Product categories"]')
+      .getByRole("link", { name: "Fashion" });
+    await fashionChip.scrollIntoViewIfNeeded();
+    await fashionChip.click();
+    await expect(page).toHaveURL(/category=fashion/);
+    await expect(
+      page.getByRole("button", { name: "Remove filter: Category: Fashion" }),
+    ).toBeVisible();
   });
 });

@@ -80,6 +80,7 @@ export const checkoutSchema = z.object({
 export type AddressFormValues = z.infer<typeof addressSchema>;
 export type PaymentFormValues = z.infer<typeof paymentSchema>;
 export type CheckoutFormValues = z.infer<typeof checkoutSchema>;
+export type CheckoutFormInput = Pick<CheckoutFormValues, "address" | "payment">;
 
 export const ADDRESS_FIELDS = [
   "fullName",
