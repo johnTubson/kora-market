@@ -1,9 +1,16 @@
 import { Suspense } from "react";
+import type { Metadata } from "next";
 
 import { Container } from "@/components/layout/Container";
 import { CatalogListing } from "@/features/catalog/components/CatalogListing";
-import { SkeletonCard } from "@/components/ui/Skeleton";
+import { Skeleton, SkeletonCard } from "@/components/ui/Skeleton";
 import { getProducts } from "@/lib/products";
+
+export const metadata: Metadata = {
+  title: "All products",
+  description:
+    "Browse the full Kora Market catalog — filter by category or search by name.",
+};
 
 export default function ProductsPage() {
   const products = getProducts();
@@ -26,13 +33,14 @@ export default function ProductsPage() {
 
 function CatalogListingSkeleton() {
   return (
-    <div className="space-y-6">
-      <div className="h-11 w-full max-w-md animate-pulse rounded-md bg-muted" />
+    <div className="space-y-6" aria-busy="true">
+      <Skeleton className="h-11 w-full max-w-md" label="Loading search" />
       <div className="flex gap-2">
         {Array.from({ length: 5 }).map((_, index) => (
-          <div
+          <Skeleton
             key={index}
-            className="h-10 w-24 shrink-0 animate-pulse rounded-full bg-muted"
+            className="h-10 w-24 shrink-0 rounded-full"
+            label="Loading category filter"
           />
         ))}
       </div>

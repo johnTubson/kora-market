@@ -2,7 +2,12 @@
 module.exports = {
   ci: {
     collect: {
-      url: ["http://localhost:3001/", "http://localhost:3001/products"],
+      url: [
+        "http://localhost:3001/",
+        "http://localhost:3001/products",
+        "http://localhost:3001/products/ankara-print-dress",
+        "http://localhost:3001/cart",
+      ],
       startServerCommand: "pnpm start --port 3001",
       startServerReadyPattern: "Ready",
       startServerReadyTimeout: 60_000,

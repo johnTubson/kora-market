@@ -3,13 +3,13 @@
 import { useFormContext } from "react-hook-form";
 
 import { Input } from "@/components/ui/Input";
-import type { CheckoutFormValues } from "@/lib/validators";
+import type { CheckoutFormInput } from "@/lib/validators";
 
 export function AddressStep() {
   const {
     register,
     formState: { errors },
-  } = useFormContext<CheckoutFormValues>();
+  } = useFormContext<CheckoutFormInput>();
 
   const addressErrors = errors.address;
 

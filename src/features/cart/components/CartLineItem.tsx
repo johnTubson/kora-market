@@ -78,7 +78,7 @@ export function CartLineItem({ item }: CartLineItemProps) {
 
           <Button
             variant="ghost"
-            size="sm"
+            className="min-h-touch"
             onClick={() => removeItem(item.id)}
             aria-label={`Remove ${item.name} from cart`}
           >

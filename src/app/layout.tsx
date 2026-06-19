@@ -1,10 +1,11 @@
 import { cookies } from "next/headers";
+import { Geist, Geist_Mono } from "next/font/google";
 
 import { AppProviders } from "@/app/providers";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { isCurrencyCode } from "@/lib/currency";
+import { siteConfig } from "@/lib/site";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -20,9 +21,25 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Kora Market",
-  description:
-    "Mobile-first headless commerce storefront demo for emerging markets.",
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: siteConfig.name,
+    template: `%s | ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    title: siteConfig.name,
+    description: siteConfig.description,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.name,
+    description: siteConfig.description,
+  },
 };
 
 export default async function RootLayout({

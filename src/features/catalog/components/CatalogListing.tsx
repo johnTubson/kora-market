@@ -1,12 +1,66 @@
 "use client";
 
-import { ChangeEvent } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
+import { useState } from "react";
 
-import { Input } from "@/components/ui/Input";
+import { ActiveFilters } from "@/features/catalog/components/ActiveFilters";
+import { CatalogSearchForm } from "@/features/catalog/components/CatalogSearchForm";
 import { CategoryChips } from "@/features/catalog/components/CategoryChips";
 import { ProductGrid } from "@/features/catalog/components/ProductGrid";
-import { isCategory, type Category, type Product } from "@/types";
+import { parseCatalogFilters } from "@/features/catalog/utils/catalog-url";
+import { cn } from "@/lib/cn";
+import type { Category, Product } from "@/types";
+
+export type CatalogListingProps = {
+  products: Product[];
+};
+
+export function CatalogListing({ products }: CatalogListingProps) {
+  const searchParams = useSearchParams();
+  const { category, q: urlQuery } = parseCatalogFilters(searchParams);
+  const [isPending, setIsPending] = useState(false);
+  const [liveQuery, setLiveQuery] = useState(urlQuery);
+  const filteredProducts = filterProducts(products, category, liveQuery);
+
+  return (
+    <div className="space-y-6">
+      <div
+        className={cn(isPending && "opacity-80 transition-opacity")}
+        aria-busy={isPending || undefined}
+      >
+        <CatalogSearchForm
+          category={category}
+          urlQuery={urlQuery}
+          resultCount={filteredProducts.length}
+          isPending={isPending}
+          onPendingChange={setIsPending}
+          onQueryChange={setLiveQuery}
+        />
+
+        <ActiveFilters className="mt-4" />
+      </div>
+
+      <CategoryChips />
+
+      {filteredProducts.length > 0 ? (
+        <ProductGrid
+          products={filteredProducts}
+          priorityFirst
+          priorityCount={1}
+        />
+      ) : (
+        <div className="rounded-lg border border-dashed border-border px-6 py-16 text-center">
+          <h2 className="text-lg font-semibold">No products found</h2>
+          <p className="mt-2 text-sm text-muted-foreground">
+            {liveQuery
+              ? `No results for "${liveQuery}". Try a different search term or category.`
+              : "No products in this category yet."}
+          </p>
+        </div>
+      )}
+    </div>
+  );
+}
 
 function filterProductsByCategory(
   products: Product[],
@@ -29,78 +83,6 @@ function filterProducts(
     (product) =>
       product.name.toLowerCase().includes(normalizedQuery) ||
       product.description.toLowerCase().includes(normalizedQuery)
-  );
-}
-
-export type CatalogListingProps = {
-  products: Product[];
-};
-
-export function CatalogListing({ products }: CatalogListingProps) {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const categoryParam = searchParams.get("category");
-  const category = isCategory(categoryParam) ? categoryParam : "all";
-  const query = searchParams.get("q") ?? "";
-  const filteredProducts = filterProducts(products, category, query);
-
-  function handleSearch(event: ChangeEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const nextQuery = formData.get("q")?.toString() ?? "";
-    const params = new URLSearchParams();
-
-    if (category !== "all") {
-      params.set("category", category);
-    }
-    if (nextQuery.trim()) {
-      params.set("q", nextQuery.trim());
-    }
-
-    const href = params.toString() ? `/products?${params}` : "/products";
-    router.push(href);
-  }
-
-  return (
-    <div className="space-y-6">
-      <form
-        onSubmit={handleSearch}
-        className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"
-      >
-        <Input
-          label="Search products"
-          type="search"
-          name="q"
-          key={query}
-          defaultValue={query}
-          placeholder="Search by name or description…"
-          className="sm:max-w-md"
-        />
-        <p className="text-sm text-muted-foreground" aria-live="polite">
-          {filteredProducts.length} product
-          {filteredProducts.length === 1 ? "" : "s"}
-        </p>
-      </form>
-
-      <CategoryChips />
-
-      {filteredProducts.length > 0 ? (
-        <ProductGrid
-          products={filteredProducts}
-          priorityFirst
-          priorityCount={1}
-        />
-      ) : (
-        <div className="rounded-lg border border-dashed border-border px-6 py-16 text-center">
-          <h2 className="text-lg font-semibold">No products found</h2>
-          <p className="mt-2 text-sm text-muted-foreground">
-            {query
-              ? `No results for "${query}". Try a different search term or category.`
-              : "No products in this category yet."}
-          </p>
-        </div>
-      )}
-    </div>
   );
 }
 
