@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { Container } from "@/components/layout/Container";
+import { CurrencySwitcher } from "@/components/layout/CurrencySwitcher";
 import { MobileNav } from "@/components/layout/MobileNav";
 import { cn } from "@/lib/cn";
 
@@ -46,6 +47,7 @@ export function Header({ className }: HeaderProps) {
         </nav>
 
         <div className="flex items-center gap-2">
+          <CurrencySwitcher />
           <Link
             href="/cart"
             className="focus-ring relative hidden min-h-touch min-w-touch items-center justify-center rounded-md px-3 text-sm font-medium hover:bg-muted md:inline-flex"
