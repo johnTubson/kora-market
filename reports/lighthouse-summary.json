@@ -1,0 +1,19 @@
+{
+  "generatedAt": "2026-06-19T19:35:00.000Z",
+  "formFactor": "mobile",
+  "runsPerUrl": 3,
+  "results": [
+    {
+      "url": "http://localhost:3001/",
+      "performance": 93,
+      "accessibility": 100,
+      "lcp": "3.0 s"
+    },
+    {
+      "url": "http://localhost:3001/products",
+      "performance": 90,
+      "accessibility": 98,
+      "lcp": "3.3 s"
+    }
+  ]
+}
