@@ -69,9 +69,11 @@ test.describe("Checkout", () => {
     await page.getByRole("button", { name: "Place order" }).click();
 
     await expect(page).toHaveURL(/\/checkout\?forceStockFail=1/);
-    await expect(page.getByRole("alert")).toContainText(
-      "Some items are no longer available"
-    );
+    await expect(
+      page
+        .getByRole("alert")
+        .filter({ hasText: "Some items are no longer available" })
+    ).toBeVisible();
     await expect(page.getByRole("link", { name: "Update cart" })).toBeVisible();
   });
 });
