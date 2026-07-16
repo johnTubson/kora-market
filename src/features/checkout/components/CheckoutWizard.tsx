@@ -1,7 +1,8 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 import {
   useEffect,
   useState,
@@ -24,6 +25,7 @@ import {
   useCartStore,
 } from "@/features/cart/store/cart-store";
 import { PriceDisplay } from "@/features/catalog/components/PriceDisplay";
+import type { StockConflict } from "@/lib/inventory";
 import { useCurrency } from "@/providers/currency-provider";
 import {
   ADDRESS_FIELDS,
@@ -82,8 +84,19 @@ function getServerHydrated() {
   return false;
 }
 
+function formatConflicts(conflicts: StockConflict[]): string {
+  return conflicts
+    .map(
+      (conflict) =>
+        `${conflict.name} (${conflict.variantName}): ${conflict.available} available`
+    )
+    .join("; ");
+}
+
 export function CheckoutWizard() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const forceStockFail = searchParams.get("forceStockFail") === "1";
   const hydrated = useSyncExternalStore(
     subscribeToCartHydration,
     getCartHydrated,
@@ -94,6 +107,7 @@ export function CheckoutWizard() {
   const subtotal = useCartStore(selectCartSubtotal);
   const [step, setStep] = useState(1);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [conflicts, setConflicts] = useState<StockConflict[] | null>(null);
   const [isPending, startTransition] = useTransition();
 
   const methods = useForm<CheckoutFormInput>({
@@ -132,6 +146,7 @@ export function CheckoutWizard() {
 
   async function handleNext() {
     setSubmitError(null);
+    setConflicts(null);
 
     if (step === 1) {
       const addressFields = ADDRESS_FIELDS.map(
@@ -156,16 +171,21 @@ export function CheckoutWizard() {
 
   function handleBack() {
     setSubmitError(null);
+    setConflicts(null);
     setStep((current) => Math.max(1, current - 1));
   }
 
   function onSubmit(formData: CheckoutFormInput) {
     setSubmitError(null);
+    setConflicts(null);
     const payload: CheckoutFormValues = {
       ...formData,
       currency,
+      forceStockFail: forceStockFail || undefined,
       items: items.map((item) => ({
         id: item.id,
+        productId: item.productId,
+        variantId: item.variantId,
         name: item.name,
         variantName: item.variantName,
         quantity: item.quantity,
@@ -177,6 +197,9 @@ export function CheckoutWizard() {
       const result = await createOrder(payload);
       if (result?.error) {
         setSubmitError(result.error);
+        if (result.code === "OUT_OF_STOCK" && result.conflicts) {
+          setConflicts(result.conflicts);
+        }
       }
     });
   }
@@ -201,9 +224,23 @@ export function CheckoutWizard() {
           </div>
 
           {submitError ? (
-            <p className="text-sm text-destructive" role="alert">
-              {submitError}
-            </p>
+            <div
+              className="space-y-2 rounded-md border border-destructive/40 bg-destructive/5 p-3"
+              role="alert"
+            >
+              <p className="text-sm text-destructive">{submitError}</p>
+              {conflicts && conflicts.length > 0 ? (
+                <p className="text-xs text-muted-foreground">
+                  {formatConflicts(conflicts)}
+                </p>
+              ) : null}
+              <Link
+                href="/cart"
+                className="inline-flex text-sm font-medium text-primary underline-offset-4 hover:underline"
+              >
+                Update cart
+              </Link>
+            </div>
           ) : null}
 
           <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-between">

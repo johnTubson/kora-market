@@ -29,6 +29,8 @@ export function AddToCartButton({
   function handleAddToCart() {
     setAdding(true);
 
+    const variant = product.variants.find((item) => item.id === variantId);
+
     addItem({
       productId: product.id,
       slug: product.slug,
@@ -38,6 +40,7 @@ export function AddToCartButton({
       variantId,
       variantName,
       quantity: 1,
+      maxQty: variant?.stockQty,
     });
 
     showToast({

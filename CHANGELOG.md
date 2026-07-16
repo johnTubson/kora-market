@@ -4,7 +4,21 @@ All notable changes to Kora Market are documented in this file.
 
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## [Unreleased]
+## [1.2.0] - 2026-07-16
+
+### Added
+
+- Variant `stockQty` inventory with in-memory reservation at place-order
+- Persisted order records (`GET /api/orders/:orderId`) rendered on success page
+- Structured `OUT_OF_STOCK` conflicts with `role="alert"` and Update cart CTA
+- Cart quantity capped to available stock
+- Unit tests for inventory/orders; Playwright OOS checkout path (`?forceStockFail=1`)
+
+### Changed
+
+- `createOrder` Server Action re-checks stock before redirect
+- Architecture docs: removed stale TanStack Query claims; ADR-005 inventory reservation
+- ROADMAP Phase 0 checkboxes marked complete
 
 ## [1.1.0] - 2026-06-19
 

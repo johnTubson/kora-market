@@ -70,6 +70,14 @@ describe("cart-utils", () => {
     expect(items[0]?.quantity).toBe(5);
   });
 
+  it("caps quantity at maxQty", () => {
+    const items = addItemToCart([], { ...baseInput, quantity: 10 }, 2);
+    expect(items[0]?.quantity).toBe(2);
+
+    const bumped = updateItemQty(items, items[0]!.id, 9, 2);
+    expect(bumped[0]?.quantity).toBe(2);
+  });
+
   it("removes item when quantity is zero or less", () => {
     const items = updateItemQty([sampleItem], sampleItem.id, 0);
     expect(items).toHaveLength(0);

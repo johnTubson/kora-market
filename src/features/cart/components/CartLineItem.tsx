@@ -16,6 +16,8 @@ export type CartLineItemProps = {
 export function CartLineItem({ item }: CartLineItemProps) {
   const updateQty = useCartStore((state) => state.updateQty);
   const removeItem = useCartStore((state) => state.removeItem);
+  const atMax =
+    item.maxQty !== undefined && item.quantity >= item.maxQty;
 
   return (
     <li className="flex gap-4 border-b border-border py-4 last:border-b-0">
@@ -69,12 +71,18 @@ export function CartLineItem({ item }: CartLineItemProps) {
             <button
               type="button"
               onClick={() => updateQty(item.id, item.quantity + 1)}
-              className="focus-ring min-h-touch min-w-touch px-3 text-lg"
+              className="focus-ring min-h-touch min-w-touch px-3 text-lg disabled:opacity-40"
               aria-label="Increase quantity"
+              disabled={atMax}
             >
               +
             </button>
           </div>
+          {item.maxQty !== undefined ? (
+            <p className="sr-only">
+              Maximum available: {item.maxQty}
+            </p>
+          ) : null}
 
           <Button
             variant="ghost"

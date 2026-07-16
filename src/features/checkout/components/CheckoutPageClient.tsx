@@ -1,4 +1,4 @@
-"use client";
+import { Suspense } from "react";
 
 import { Container } from "@/components/layout/Container";
 import { CheckoutWizard } from "@/features/checkout/components/CheckoutWizard";
@@ -11,7 +11,24 @@ export function CheckoutPageClient() {
         Complete your order in three quick steps.
       </p>
       <div className="mt-8">
-        <CheckoutWizard />
+        <Suspense
+          fallback={
+            <div
+              className="space-y-4"
+              aria-busy="true"
+              aria-label="Loading checkout"
+            >
+              {Array.from({ length: 4 }).map((_, index) => (
+                <div
+                  key={index}
+                  className="h-11 animate-pulse rounded-md bg-muted motion-reduce:animate-none"
+                />
+              ))}
+            </div>
+          }
+        >
+          <CheckoutWizard />
+        </Suspense>
       </div>
     </Container>
   );

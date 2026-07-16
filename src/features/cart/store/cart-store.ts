@@ -26,11 +26,18 @@ export const useCartStore = create<CartState>()(
     (set, get) => ({
       items: [],
       addItem: (input) =>
-        set((state) => ({ items: addItemToCart(state.items, input) })),
+        set((state) => ({
+          items: addItemToCart(state.items, input, input.maxQty),
+        })),
       removeItem: (id) =>
         set((state) => ({ items: removeItemFromCart(state.items, id) })),
       updateQty: (id, quantity) =>
-        set((state) => ({ items: updateItemQty(state.items, id, quantity) })),
+        set((state) => {
+          const current = state.items.find((item) => item.id === id);
+          return {
+            items: updateItemQty(state.items, id, quantity, current?.maxQty),
+          };
+        }),
       clear: () => set({ items: clearCart() }),
       itemCount: () => getCartItemCount(get().items),
       subtotal: () => getCartSubtotal(get().items),

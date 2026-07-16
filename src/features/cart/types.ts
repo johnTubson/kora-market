@@ -8,6 +8,8 @@ export type CartItem = {
   variantId: string;
   variantName: string;
   quantity: number;
+  /** Optional stock cap from catalog (demo inventory). */
+  maxQty?: number;
 };
 
 export type AddToCartInput = {
@@ -19,4 +21,5 @@ export type AddToCartInput = {
   variantId: string;
   variantName: string;
   quantity?: number;
+  maxQty?: number;
 };

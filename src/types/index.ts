@@ -19,6 +19,8 @@ export type ProductVariant = {
   id: string;
   name: string;
   inStock: boolean;
+  /** Units available before reservations (demo inventory). */
+  stockQty: number;
 };
 
 export type Product = {

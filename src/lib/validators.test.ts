@@ -52,6 +52,8 @@ describe("validators", () => {
       items: [
         {
           id: "1:m",
+          productId: "1",
+          variantId: "m",
           name: "Ankara Print Dress",
           variantName: "Size M",
           quantity: 1,

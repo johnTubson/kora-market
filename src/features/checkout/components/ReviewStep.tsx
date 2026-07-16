@@ -95,6 +95,10 @@ export function ReviewStep() {
             {formatPrice(subtotal)}
           </dd>
         </dl>
+        <p className="mt-3 text-xs text-muted-foreground">
+          Availability is re-checked when you place the order. If stock changed,
+          you will stay on this page with a clear conflict message.
+        </p>
       </section>
     </div>
   );

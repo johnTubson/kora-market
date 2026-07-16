@@ -64,10 +64,21 @@ export const paymentSchema = z
 
 export const checkoutItemSchema = z.object({
   id: z.string(),
+  productId: z.string(),
+  variantId: z.string(),
   name: z.string(),
   variantName: z.string(),
   quantity: z.number().int().positive(),
   priceNGN: z.number().positive(),
+});
+
+export const stockConflictSchema = z.object({
+  productId: z.string(),
+  variantId: z.string(),
+  name: z.string(),
+  variantName: z.string(),
+  requested: z.number().int(),
+  available: z.number().int(),
 });
 
 export const checkoutSchema = z.object({
@@ -75,6 +86,8 @@ export const checkoutSchema = z.object({
   payment: paymentSchema,
   items: z.array(checkoutItemSchema).min(1, "Cart cannot be empty"),
   currency: z.enum(["NGN", "USD"]),
+  /** Demo/e2e only: force an out-of-stock conflict at place-order. */
+  forceStockFail: z.boolean().optional(),
 });
 
 export type AddressFormValues = z.infer<typeof addressSchema>;

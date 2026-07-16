@@ -15,12 +15,14 @@
       {
         "id": "black",
         "name": "Black",
-        "inStock": true
+        "inStock": true,
+        "stockQty": 25
       },
       {
         "id": "white",
         "name": "White",
-        "inStock": true
+        "inStock": true,
+        "stockQty": 2
       }
     ],
     "inStock": true
@@ -41,7 +43,8 @@
       {
         "id": "standard",
         "name": "Standard",
-        "inStock": true
+        "inStock": true,
+        "stockQty": 25
       }
     ],
     "inStock": true
@@ -61,12 +64,14 @@
       {
         "id": "black",
         "name": "Black",
-        "inStock": true
+        "inStock": true,
+        "stockQty": 25
       },
       {
         "id": "rose",
         "name": "Rose Gold",
-        "inStock": false
+        "inStock": false,
+        "stockQty": 0
       }
     ],
     "inStock": true
@@ -86,12 +91,14 @@
       {
         "id": "blue",
         "name": "Ocean Blue",
-        "inStock": true
+        "inStock": true,
+        "stockQty": 25
       },
       {
         "id": "red",
         "name": "Sunset Red",
-        "inStock": true
+        "inStock": true,
+        "stockQty": 1
       }
     ],
     "inStock": true
@@ -111,7 +118,8 @@
       {
         "id": "silver",
         "name": "Silver",
-        "inStock": true
+        "inStock": true,
+        "stockQty": 25
       }
     ],
     "inStock": true
@@ -132,17 +140,20 @@
       {
         "id": "s",
         "name": "Size S",
-        "inStock": true
+        "inStock": true,
+        "stockQty": 25
       },
       {
         "id": "m",
         "name": "Size M",
-        "inStock": true
+        "inStock": true,
+        "stockQty": 25
       },
       {
         "id": "l",
         "name": "Size L",
-        "inStock": true
+        "inStock": true,
+        "stockQty": 25
       }
     ],
     "inStock": true
@@ -162,12 +173,14 @@
       {
         "id": "gold",
         "name": "Gold & Green",
-        "inStock": true
+        "inStock": true,
+        "stockQty": 25
       },
       {
         "id": "blue",
         "name": "Blue & Red",
-        "inStock": true
+        "inStock": true,
+        "stockQty": 25
       }
     ],
     "inStock": true
@@ -187,17 +200,20 @@
       {
         "id": "38",
         "name": "EU 38",
-        "inStock": true
+        "inStock": true,
+        "stockQty": 25
       },
       {
         "id": "40",
         "name": "EU 40",
-        "inStock": true
+        "inStock": true,
+        "stockQty": 25
       },
       {
         "id": "42",
         "name": "EU 42",
-        "inStock": false
+        "inStock": false,
+        "stockQty": 0
       }
     ],
     "inStock": true
@@ -217,17 +233,20 @@
       {
         "id": "m",
         "name": "Size M",
-        "inStock": true
+        "inStock": true,
+        "stockQty": 25
       },
       {
         "id": "l",
         "name": "Size L",
-        "inStock": true
+        "inStock": true,
+        "stockQty": 25
       },
       {
         "id": "xl",
         "name": "Size XL",
-        "inStock": true
+        "inStock": true,
+        "stockQty": 25
       }
     ],
     "inStock": true
@@ -247,12 +266,14 @@
       {
         "id": "earth",
         "name": "Earth Tones",
-        "inStock": true
+        "inStock": true,
+        "stockQty": 25
       },
       {
         "id": "ocean",
         "name": "Ocean Blues",
-        "inStock": true
+        "inStock": true,
+        "stockQty": 25
       }
     ],
     "inStock": true
@@ -272,12 +293,14 @@
       {
         "id": "natural",
         "name": "Natural",
-        "inStock": true
+        "inStock": true,
+        "stockQty": 25
       },
       {
         "id": "charcoal",
         "name": "Charcoal",
-        "inStock": true
+        "inStock": true,
+        "stockQty": 25
       }
     ],
     "inStock": true
@@ -297,7 +320,8 @@
       {
         "id": "terracotta",
         "name": "Terracotta",
-        "inStock": true
+        "inStock": true,
+        "stockQty": 25
       }
     ],
     "inStock": true
@@ -317,12 +341,14 @@
       {
         "id": "medium",
         "name": "Medium (25cm)",
-        "inStock": true
+        "inStock": true,
+        "stockQty": 25
       },
       {
         "id": "large",
         "name": "Large (35cm)",
-        "inStock": true
+        "inStock": true,
+        "stockQty": 25
       }
     ],
     "inStock": true
@@ -342,7 +368,8 @@
       {
         "id": "black-white",
         "name": "Black & White",
-        "inStock": true
+        "inStock": true,
+        "stockQty": 25
       }
     ],
     "inStock": true
@@ -362,7 +389,8 @@
       {
         "id": "standard",
         "name": "Standard",
-        "inStock": true
+        "inStock": true,
+        "stockQty": 25
       }
     ],
     "inStock": true
@@ -382,12 +410,14 @@
       {
         "id": "500g",
         "name": "500g Jar",
-        "inStock": true
+        "inStock": true,
+        "stockQty": 25
       },
       {
         "id": "1kg",
         "name": "1kg Jar",
-        "inStock": true
+        "inStock": true,
+        "stockQty": 25
       }
     ],
     "inStock": true
@@ -407,12 +437,14 @@
       {
         "id": "mild",
         "name": "Mild",
-        "inStock": true
+        "inStock": true,
+        "stockQty": 25
       },
       {
         "id": "hot",
         "name": "Hot",
-        "inStock": true
+        "inStock": true,
+        "stockQty": 25
       }
     ],
     "inStock": true
@@ -432,12 +464,14 @@
       {
         "id": "original",
         "name": "Original",
-        "inStock": true
+        "inStock": true,
+        "stockQty": 25
       },
       {
         "id": "spicy",
         "name": "Spicy",
-        "inStock": true
+        "inStock": true,
+        "stockQty": 25
       }
     ],
     "inStock": true
@@ -457,7 +491,8 @@
       {
         "id": "1l",
         "name": "1 Litre",
-        "inStock": true
+        "inStock": true,
+        "stockQty": 25
       }
     ],
     "inStock": true
@@ -477,7 +512,8 @@
       {
         "id": "250g",
         "name": "250g",
-        "inStock": true
+        "inStock": true,
+        "stockQty": 25
       }
     ],
     "inStock": true
